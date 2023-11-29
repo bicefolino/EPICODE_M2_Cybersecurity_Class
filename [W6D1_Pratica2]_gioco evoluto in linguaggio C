@@ -1,0 +1,65 @@
+Con questo esercizio abbiamo sollevato delle importanti considerazioni sulla gestione degli errori e sulla robustezza del codice. 
+Di seguito apporteremo alcune modifiche al codice per gestire situazioni non previste e migliorare la sicurezza:
+
+1_Gestione dell'input iniziale: 
+Aggiungiamo un loop per assicurarci che l'utente fornisca una scelta valida (A o B) durante la fase di scelta iniziale.
+Aggiungiamo anche una verifica per evitare buffer overflow durante l'input del nome dell'utente.
+
+2_Gestione della lunghezza del nome:
+Modifichiamo la dichiarazione dell'array nome per consentire una dimensione sufficientemente grande.
+Utilizziamo la funzione scanf con il formato %49s per evitare il buffer overflow.
+
+3_Validazione delle risposte alle domande:
+Aggiungiamo un controllo per assicurarci che l'utente fornisca una risposta valida (A, B, o C) durante la fase di risposta alle domande.
+
+Ecco il codice aggiornato:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// ... (il resto del codice rimane invariato)
+
+// Funzione per iniziare una nuova partita
+void nuovaPartita() {
+    char nome[50];
+    int punteggio = 0;
+
+    // Chiedi all'utente di inserire il nome senza causare buffer overflow
+    printf("\nInserisci il tuo nome (max 49 caratteri): ");
+    scanf("%49s", nome);
+
+    // Ciclo fino a quando l'utente fornisce un input corretto per la lunghezza del nome
+    while (getchar() != '\n'); // Pulizia del buffer stdin
+
+    // Array di domande e risposte
+
+    // ... (il resto del codice rimane invariato)
+
+    // Ciclo attraverso le domande
+    for (int i = 0; i < 3; i++) {
+        // ... (il resto del codice rimane invariato)
+
+        char rispostaUtente;
+
+        // Ciclo fino a quando l'utente fornisce una risposta corretta (A, B o C)
+        do {
+            printf("Risposta: ");
+            scanf(" %c", &rispostaUtente);
+
+            if (rispostaUtente < 'A' || rispostaUtente > 'C') {
+                printf("Risposta non valida. Inserisci A, B o C.\n");
+            }
+        } while (rispostaUtente < 'A' || rispostaUtente > 'C');
+
+        // ... (il resto del codice rimane invariato)
+    }
+
+    // Mostra il punteggio finale
+    printf("\n%s, il tuo punteggio finale è: %d\n", nome, punteggio);
+}
+
+// ... (il resto del codice rimane invariato)
+
+
+Queste modifiche migliorano la gestione degli input e rendono il programma più robusto contro possibili errori o comportamenti indesiderati da parte dell'utente.
