@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Funzione per presentare l'introduzione
+void presentazione() {
+    printf("Benvenuto nel gioco delle domande e risposte!\n");
+    printf("Lo scopo del gioco è rispondere correttamente al maggior numero possibile di domande.\n");
+}
+
+// Funzione per mostrare il menu iniziale e ottenere la scelta dell'utente
+char menuIniziale() {
+    char scelta;
+    printf("\nMenu:\n");
+    printf("A) Iniziare una nuova partita\n");
+    printf("B) Uscire dal gioco\n");
+    printf("Scelta: ");
+    scanf(" %c", &scelta);
+    return scelta;
+}
+
+// Funzione per iniziare una nuova partita
+void nuovaPartita() {
+    char nome[50];
+    int punteggio = 0;
+
+    printf("\nInserisci il tuo nome: ");
+    scanf("%s", nome);
+
+    // Array di domande e risposte
+    char domande[3][100] = {
+        "Qual è la capitale dell'Italia?",
+        "Quanti giorni ci sono in una settimana?",
+        "Qual è il simbolo chimico dell'acqua?"
+    };
+
+    char risposte[3][3][50] = {
+        {"Roma", "Milano", "Parigi"},
+        {"5", "6", "7"},
+        {"H2O", "CO2", "O2"}
+    };
+
+    // Ciclo attraverso le domande
+    for (int i = 0; i < 3; i++) {
+        printf("\nDomanda %d: %s\n", i + 1, domande[i]);
+
+        // Mostra le opzioni di risposta
+        for (int j = 0; j < 3; j++) {
+            printf("%c) %s\n", 'A' + j, risposte[i][j]);
+        }
+
+        char rispostaUtente;
+        printf("Risposta: ");
+        scanf(" %c", &rispostaUtente);
+
+        // Confronta la risposta dell'utente con quella corretta
+        if (rispostaUtente == 'A' && strcmp(risposte[i][0], risposte[i][2]) == 0 ||
+            rispostaUtente == 'B' && strcmp(risposte[i][1], risposte[i][2]) == 0 ||
+            rispostaUtente == 'C' && strcmp(risposte[i][2], risposte[i][2]) == 0) {
+            printf("Risposta corretta!\n");
+            punteggio++;
+        } else {
+            printf("Risposta errata. La risposta corretta era: %s\n", risposte[i][2]);
+        }
+    }
+
+    // Mostra il punteggio finale
+    printf("\n%s, il tuo punteggio finale è: %d\n", nome, punteggio);
+}
+
+int main() {
+    char scelta;
+
+    // Presenta l'introduzione
+    presentazione();
+
+    do {
+        // Ottieni la scelta dell'utente dal menu
+        scelta = menuIniziale();
+
+        switch (scelta) {
+            case 'A':
+                // Inizia una nuova partita
+                nuovaPartita();
+                break;
+            case 'B':
+                // Esci dal gioco
+                printf("\nArrivederci! Grazie per aver giocato.\n");
+                break;
+            default:
+                printf("\nScelta non valida. Riprova.\n");
+        }
+
+    } while (scelta != 'B');
+
+    return 0;
+}
