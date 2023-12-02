@@ -1,0 +1,67 @@
+# Nell'esercizio di oggi viene chiesto di scrivere un programma in python che in base alla scelta dell'utente 
+# permetta di calcolare il perimetro di un quadrato, di un rettangolo e di un cerchio.
+
+
+# Ecco un semplice programma in Python che consente all'utente di calcolare il perimetro di un quadrato, 
+# di un rettangolo e di un cerchio in base alla scelta:
+
+import math
+
+def calcola_perimetro_quadrato(lato):
+    return 4 * lato
+
+def calcola_perimetro_rettangolo(base, altezza):
+    return 2 * (base + altezza)
+
+def calcola_perimetro_cerchio(raggio):
+    return 2 * math.pi * raggio
+
+def main():
+    print("Calcolatore di perimetri:")
+    print("1. Quadrato")
+    print("2. Rettangolo")
+    print("3. Cerchio")
+
+    scelta = input("Scegli il tipo di figura (1/2/3): ")
+
+    if scelta == '1':
+        lato = float(input("Inserisci la lunghezza del lato del quadrato: "))
+        perimetro = calcola_perimetro_quadrato(lato)
+        print(f"Il perimetro del quadrato è {perimetro}")
+    elif scelta == '2':
+        base = float(input("Inserisci la lunghezza della base del rettangolo: "))
+        altezza = float(input("Inserisci l'altezza del rettangolo: "))
+        perimetro = calcola_perimetro_rettangolo(base, altezza)
+        print(f"Il perimetro del rettangolo è {perimetro}")
+    elif scelta == '3':
+        raggio = float(input("Inserisci il raggio del cerchio: "))
+        perimetro = calcola_perimetro_cerchio(raggio)
+        print(f"Il perimetro del cerchio è {perimetro}")
+    else:
+        print("Scelta non valida. Inserisci 1, 2 o 3.")
+
+if __name__ == "__main__":
+    main()
+
+#In pratica seguiamo vari step per far funzionare lo script:
+# 1_Importazione del modulo math: 
+import math: Importa il modulo math, che fornisce funzioni matematiche, tra cui math.pi che rappresenta il valore di π.
+
+# 2_Definizione di funzioni:
+- calcola_perimetro_quadrato(lato): Calcola il perimetro di un quadrato dato il lato.
+- calcola_perimetro_rettangolo(base, altezza): Calcola il perimetro di un rettangolo dato la base e l'altezza.
+- calcola_perimetro_cerchio(raggio): Calcola il perimetro di un cerchio dato il raggio.
+
+# 3_Funzione principale (main):
+- Presenta un menu all'utente con tre opzioni (quadrato, rettangolo, cerchio) e richiede all'utente di sceglierne uno.
+- Utilizza la struttura di controllo if-elif-else per gestire la scelta dell'utente e calcolare il perimetro in base alla figura scelta.
+- Utilizza la funzione float() per convertire l'input dell'utente in numeri decimali.
+- Stampa il perimetro calcolato.
+
+# 4_Condizione if __name__ == "__main__":
+- Controlla se lo script è eseguito direttamente come programma principale, non come modulo importato.
+- Se è il caso, chiama la funzione main(), avviando il programma.
+
+Questa struttura consente di organizzare il codice in modo che la logica principale (main()) venga eseguita 
+solo se lo script è eseguito direttamente, mentre le funzioni definite possono essere riutilizzate se lo script 
+viene importato come modulo in un altro script.
